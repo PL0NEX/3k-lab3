@@ -4,7 +4,7 @@ using Npgsql;
 using Microsoft.Extensions.Configuration;
 
 
-namespace MyWebApi.Infrastructure
+namespace MyWebApi.Infrastrucutre
 {
     public class UserRepository : RepositoryBase<User>, IRepository<User>
     {
