@@ -3,7 +3,7 @@ using MyWebApi.Domain.interfaces;
 using Npgsql;
 using Microsoft.Extensions.Configuration;
 
-namespace MyWebApi.Infrastructure
+namespace MyWebApi.Infrastrucutre
 {
     public class PeriodRepository : RepositoryBase<Period>, IRepository<Period>
     {
