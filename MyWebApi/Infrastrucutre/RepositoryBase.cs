@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MyWebApi.Infrastructure
+namespace MyWebApi.Infrastrucutre
 {
     
     public abstract class RepositoryBase<T>
