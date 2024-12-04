@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoalsExample.WebApi.Controllers
+namespace MyWebApi.Controllers
 {
     [ApiController]
     [Route("period")]
