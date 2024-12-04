@@ -1,4 +1,4 @@
-using GoalsExample.WebApi.Infrastructure;
+using MyWebApi.Infrastrucutre;
 using MyWebApi.Domain.Entities;
 using MyWebApi.Domain.interfaces;
 using Microsoft.Extensions.Configuration;
