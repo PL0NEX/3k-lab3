@@ -25,10 +25,13 @@ namespace MyWebApi.Infrastrucutre
             return newId;
         }
 
-        public override async Task UpdateAsync(Guid id, User entity)
-        {
-            await this.ExecuteSqlAsync($"UPDATE cr_bd.users SET login='{entity.Login}', pass_hash='{entity.PassHash}' WHERE id='{id}'");
-        }
+         public override async Task UpdateAsync(Guid id, User entity)
+         {    
+             if (entity == null)
+                 throw new ArgumentNullException(nameof(entity), "Объект пользователя не может быть пустым.");
+
+         await this.ExecuteSqlAsync($"UPDATE cr_bd.users SET login='{entity.Login}', pass_hash='{entity.PassHash}' WHERE id='{id}'");
+         }
 
         protected override User GetEntityFromReader(NpgsqlDataReader reader)
         {
