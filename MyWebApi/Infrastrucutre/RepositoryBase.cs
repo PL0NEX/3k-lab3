@@ -47,18 +47,24 @@ namespace MyWebApi.Infrastrucutre
             return result;
         }
 
-        protected virtual async Task ExecuteSqlAsync(string sql)
-        {
-            using (var connection = new NpgsqlConnection(connectionString))
-            {
-                await connection.OpenAsync();
+         protected virtual async Task ExecuteSqlAsync(string sql)
+ {
+     if (string.IsNullOrWhiteSpace(sql))
+         throw new ArgumentException("SQL-запрос не может быть пустым или содержать только пробелы.", nameof(sql));
 
-                using (var sqlCommand = new NpgsqlCommand(sql, connection))
-                {
-                    await sqlCommand.ExecuteNonQueryAsync();
-                }
-            }
-        }
+     if (sql.Contains("--") || sql.Contains(";"))
+         throw new InvalidOperationException("SQL-запрос содержит потенциально небезопасный код.");
+
+     using (var connection = new NpgsqlConnection(connectionString))
+     {
+         await connection.OpenAsync();
+
+         using (var sqlCommand = new NpgsqlCommand(sql, connection))
+         {
+             await sqlCommand.ExecuteNonQueryAsync();
+         }
+     }
+ }
 
       
         protected abstract T GetEntityFromReader(NpgsqlDataReader reader);
