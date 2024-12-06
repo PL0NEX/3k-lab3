@@ -26,9 +26,12 @@ namespace MyWebApi.Infrastrucutre
         }
 
         public override async Task UpdateAsync(Guid id, Period entity)
-        {
-            await this.ExecuteSqlAsync($"UPDATE cr_bd.periods SET name='{entity.Name}', start_date='{entity.StartDate:yyyy-MM-dd}', end_date='{entity.EndDate:yyyy-MM-dd}' WHERE id='{id}'");
-        }
+{
+    if (entity == null)
+        throw new ArgumentNullException(nameof(entity), "Объект периода не может быть пустым..");
+
+    await this.ExecuteSqlAsync($"UPDATE cr_bd.periods SET name='{entity.Name}', start_date='{entity.StartDate:yyyy-MM-dd}', end_date='{entity.EndDate:yyyy-MM-dd}' WHERE id='{id}'");
+}
 
         protected override Period GetEntityFromReader(NpgsqlDataReader reader)
         {
